@@ -14,10 +14,10 @@ export const commandHandler = async (ctx: any) => {
     const reply = `@${username}\n${await replyFunc(prompt, first_name)}`;
     console.log(` -> [${cmd}] ${prompt}`);
     console.log(` <- ${reply}`);
-    if (cmd === 'sam') {
-      ctx.reply(reply);
-    } else {
+    if (cmd === 'about') {
       ctx.replyWithMarkdownV2(reply);
+    } else {
+      ctx.reply(reply);
     }
   } else {
     console.error(`Unknown command: ${cmd}`);
