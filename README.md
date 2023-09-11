@@ -1,6 +1,11 @@
 # ArweaveGPT
 
-<add description>
+  
+<div align="center">
+  <img src="https://github.com/cromatikap/ArweaveGPT/assets/7074019/6c276aee-bc0e-4b67-a540-b5f56db10dc9" />
+
+  <b>Arweave Wallet Activity analysis</b>
+</div>
 
 ## Bot commands
 
