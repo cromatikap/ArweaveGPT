@@ -1,6 +1,5 @@
 import axios, { AxiosError } from 'axios';
 import { getTxs } from './arweave';
-import { format } from './format';
 require('dotenv').config();
 
 if(!process.env.OPENAI_INIT_PROMPT || !process.env.OPENAI_INIT_RESPONSE) {
@@ -50,22 +49,14 @@ async function query(content: string) {
 
 export async function getChatResponse(walletAddr: string) {
   if(walletAddr.length === 0) {
-    return format("Please provide a wallet address. Example:\n /activity R0i6IiIzg5GVSnoUrzD0-deypA2vJlX2SCmD5zrDfPs");
+    return "Please provide a wallet address. Example:\n /activity R0i6IiIzg5GVSnoUrzD0-deypA2vJlX2SCmD5zrDfPs";
   }
   try {
     const content = await getTxs(walletAddr);
-    return format(await query(content));
+    return await query(content);
   } catch (error: any) {
     console.log(error.message);
     if (error instanceof AxiosError) console.error(error.response?.data.error.message);
-    return '❌ ' + format(error.message);
+    return '❌ ' + error.message;
   }
-}
-
-export function getChatHistory() {
-  const convo = conversationHistory.map((item) => `*[${item.role}]*
-${item.content}
-`);
-
-  return format(convo.join(''));
 }
